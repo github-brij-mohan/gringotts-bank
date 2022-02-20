@@ -1,5 +1,6 @@
 ﻿using Gringotts.Services.Contracts;
 using Gringotts.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ namespace Gringotts.WebApi.Controllers
 {
     [Route("api/v1.0/customers/{customerId}/accounts/{accountNumber}/transactions")]
     [ApiController]
+    [Authorize]
     public class TransactionController : ControllerBase
     {
         private readonly ITransactionService _transactionService;
@@ -19,7 +21,7 @@ namespace Gringotts.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTransactionAsync([FromQuery] int customerId, [FromQuery] int accountNumber, [FromBody] CreateTransactionRequest createTransactionRequest)
+        public async Task<IActionResult> CreateTransactionAsync(int customerId, int accountNumber, [FromBody] CreateTransactionRequest createTransactionRequest)
         {
             try
             {
@@ -33,7 +35,7 @@ namespace Gringotts.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTransactionsAsync([FromQuery] int customerId, [FromQuery] int accountNumber, 
+        public async Task<IActionResult> GetAllTransactionsAsync(int customerId, int accountNumber, 
                                                                  [FromQuery] DateTime? start, [FromQuery] DateTime? end)
         {
             try
@@ -51,7 +53,7 @@ namespace Gringotts.WebApi.Controllers
 
         [HttpGet]
         [Route("{transactionId}")]
-        public async Task<IActionResult> GetAccountByIdAsync([FromQuery] int customerId, [FromQuery] int accountNumber, [FromQuery] int transactionId)
+        public async Task<IActionResult> GetAccountByIdAsync(int customerId, int accountNumber, int transactionId)
         {
             try
             {

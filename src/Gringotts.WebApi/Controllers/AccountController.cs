@@ -1,5 +1,6 @@
 ﻿using Gringotts.Services.Contracts;
 using Gringotts.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ namespace Gringotts.WebApi.Controllers
 {
     [Route("api/v1.0/customers/{customerId}/accounts")]
     [ApiController]
+    [Authorize]
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
@@ -19,7 +21,7 @@ namespace Gringotts.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAccountAsync([FromQuery] int customerId, [FromBody] CreateAccountRequest accountRequest)
+        public async Task<IActionResult> CreateAccountAsync(int customerId, [FromBody] CreateAccountRequest accountRequest)
         {
             try
             {
@@ -33,7 +35,7 @@ namespace Gringotts.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAccountsAsync([FromQuery] int customerId)
+        public async Task<IActionResult> GetAllAccountsAsync(int customerId)
         {
             try
             {
@@ -48,7 +50,7 @@ namespace Gringotts.WebApi.Controllers
 
         [HttpGet]
         [Route("{accountId}")]
-        public async Task<IActionResult> GetAccountByIdAsync([FromQuery] int customerId, [FromQuery] int accountId)
+        public async Task<IActionResult> GetAccountByIdAsync(int customerId, int accountId)
         {
             try
             {

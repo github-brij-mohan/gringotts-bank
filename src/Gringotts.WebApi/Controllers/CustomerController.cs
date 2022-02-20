@@ -1,5 +1,6 @@
 ﻿using Gringotts.Services.Contracts;
 using Gringotts.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Gringotts.WebApi.Controllers
 {
     [Route("api/v1.0/customers")]
     [ApiController]
+    [Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;
@@ -34,7 +36,7 @@ namespace Gringotts.WebApi.Controllers
 
         [HttpGet]
         [Route("{customerId}")]
-        public async Task<IActionResult> GetCustomerAsync([FromQuery] int customerId)
+        public async Task<IActionResult> GetCustomerAsync(int customerId)
         {
             try
             {
