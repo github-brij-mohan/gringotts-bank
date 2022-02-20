@@ -22,6 +22,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Gringotts
@@ -38,7 +39,11 @@ namespace Gringotts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gringotts", Version = "v1" });
@@ -47,10 +52,15 @@ namespace Gringotts
             services.AddDbContextPool<BankDbContext>(options => options.UseSqlServer("Data Source=JARVIS;Initial Catalog=gringotts_bank;Integrated Security=true;"));
 
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IValidator<CreateCustomerRequest>, CustomerRequestValidator>();
+            services.AddTransient<IValidator<CreateAccountRequest>, CreateAccountRequestValidator>();
             services.AddTransient<ICustomerManager, CustomerManager>();
+            services.AddTransient<IAccountManager, AccountManager>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<ICustomerDal, CustomerDal>();
+            services.AddTransient<IAccountDal, AccountDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

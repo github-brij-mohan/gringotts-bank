@@ -4,7 +4,7 @@ namespace Gringotts.Core.Models
 {
     public class Account
     {
-        public string AccountNumber { get; set; }
+        public int AccountNumber { get; set; }
         public AccountType Type { get; set; }
         public Money Balance { get; set; }
         public DateTime CreatedAt { get; set; }

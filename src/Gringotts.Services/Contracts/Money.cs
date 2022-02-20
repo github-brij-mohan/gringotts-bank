@@ -2,7 +2,12 @@
 {
     public class Money
     {
-        public string Currency { get; set; }
-        public double Amount { get; set; }
+        public Currency Currency { get; set; }
+        public double Value { get; set; }
+    }
+
+    public enum Currency
+    {
+        INR
     }
 }
