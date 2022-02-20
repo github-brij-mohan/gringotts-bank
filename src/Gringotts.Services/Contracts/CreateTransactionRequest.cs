@@ -3,7 +3,7 @@
     public class CreateTransactionRequest
     {
         public Money Amount { get; set; }
-        public TransactionType Type { get; set; }
+        public TransactionType? Type { get; set; }
         public string Description { get; set; }
     }
 

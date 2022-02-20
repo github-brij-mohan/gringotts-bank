@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,25 +43,40 @@ namespace Gringotts
             services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                options.JsonSerializerOptions.IgnoreNullValues = true;
             });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gringotts", Version = "v1" });
             });
 
-            services.AddDbContextPool<BankDbContext>(options => options.UseSqlServer("Data Source=JARVIS;Initial Catalog=gringotts_bank;Integrated Security=true;"));
+            services.AddDbContextPool<BankDbContext>(options => options.UseSqlServer("Data Source=JARVIS;" +
+                                                                                     "Initial Catalog=gringotts_bank;" +
+                                                                                     "Integrated Security=true;"));
 
+            //services
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<ITransactionService, TransactionService>();
+
+            //validators
             services.AddTransient<IValidator<CreateCustomerRequest>, CustomerRequestValidator>();
             services.AddTransient<IValidator<CreateAccountRequest>, CreateAccountRequestValidator>();
+            services.AddTransient<IValidator<CreateTransactionRequest>, CreateTransactionRequestValidator>();
+
+            //managers
             services.AddTransient<ICustomerManager, CustomerManager>();
             services.AddTransient<IAccountManager, AccountManager>();
+            services.AddTransient<ITransactionManager, TransactionManager>();
+
+            //repositories
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
+
+            //dals
             services.AddTransient<ICustomerDal, CustomerDal>();
             services.AddTransient<IAccountDal, AccountDal>();
+            services.AddTransient<ITransactionDal, TransactionDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

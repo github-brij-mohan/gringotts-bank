@@ -15,7 +15,7 @@ namespace Gringotts.DAL.Entities
         public int AccountNumber { get; set; }
 
         [Column("amount")]
-        public string Amount { get; set; }
+        public double Amount { get; set; }
 
         [Column("currency")]
         public string Currency { get; set; }

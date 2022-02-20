@@ -12,6 +12,7 @@ namespace Gringotts.Core
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IAccountRepository _accountRepository;
+
         public AccountManager(IAccountRepository accountRepository, ICustomerRepository customerRepository)
         {
             _accountRepository = accountRepository;

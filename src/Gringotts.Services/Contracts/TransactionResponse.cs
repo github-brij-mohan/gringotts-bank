@@ -4,7 +4,7 @@ namespace Gringotts.Services.Contracts
 {
     public class TransactionResponse
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public Money Amount { get; set; }
         public Money Balance { get; set; }
         public TransactionType Type { get; set; }
