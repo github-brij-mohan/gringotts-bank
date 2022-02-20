@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Gringotts.Services.Validators
 {
-    public class CustomerRequestValidator: AbstractValidator<CreateCustomerRequest>
+    public class CreateCustomerRequestValidator: AbstractValidator<CreateCustomerRequest>
     {
-        public CustomerRequestValidator()
+        public CreateCustomerRequestValidator()
         {
             RuleFor(x => x.Name)
                 .Cascade(CascadeMode.Stop)

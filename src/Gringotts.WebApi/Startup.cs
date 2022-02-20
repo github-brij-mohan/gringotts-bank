@@ -82,27 +82,27 @@ namespace Gringotts
                                                                                      "Initial Catalog=gringotts_bank;" +
                                                                                      "Integrated Security=true;"));
 
-            //services
+            //service registrations
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<ITransactionService, TransactionService>();
 
-            //validators
-            services.AddTransient<IValidator<CreateCustomerRequest>, CustomerRequestValidator>();
+            //validator registrations
+            services.AddTransient<IValidator<CreateCustomerRequest>, CreateCustomerRequestValidator>();
             services.AddTransient<IValidator<CreateAccountRequest>, CreateAccountRequestValidator>();
             services.AddTransient<IValidator<CreateTransactionRequest>, CreateTransactionRequestValidator>();
 
-            //managers
+            //manager registrations
             services.AddTransient<ICustomerManager, CustomerManager>();
             services.AddTransient<IAccountManager, AccountManager>();
             services.AddTransient<ITransactionManager, TransactionManager>();
 
-            //repositories
+            //repository registrations
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
 
-            //dals
+            //dal registrations
             services.AddTransient<ICustomerDal, CustomerDal>();
             services.AddTransient<IAccountDal, AccountDal>();
             services.AddTransient<ITransactionDal, TransactionDal>();
