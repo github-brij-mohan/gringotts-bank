@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gringotts.DAL\Gringotts.DAL.csproj" />
+    <ProjectReference Include="..\Gringotts.Models\Gringotts.Models.csproj" />
+  </ItemGroup>
+
+</Project>
