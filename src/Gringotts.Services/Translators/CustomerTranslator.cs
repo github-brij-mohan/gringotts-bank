@@ -1,5 +1,7 @@
-﻿using Contract = Gringotts.Services.Contracts;
+﻿using System.Runtime.CompilerServices;
+using Contract = Gringotts.Services.Contracts;
 using Model = Gringotts.Core.Models;
+[assembly: InternalsVisibleTo("Gringotts.Tests")]
 
 namespace Gringotts.Services.Translators
 {

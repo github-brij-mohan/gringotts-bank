@@ -13,4 +13,10 @@
     <ProjectReference Include="..\Gringotts.Models\Gringotts.Models.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>..\Gringotts.Core\Gringotts.Core.csproj</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	
 </Project>
