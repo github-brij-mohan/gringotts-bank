@@ -18,7 +18,7 @@ namespace Gringotts.Repository
         {
             _transactionDal = transactionDal;
         }
-        public async Task<Transaction> CreateTransactionAsync(Transaction transactionRequest, int accountNumber)
+        public async Task<Transaction> CreateAsync(Transaction transactionRequest, int accountNumber)
         {
             var result = await _transactionDal.CreateTransactionAsync(transactionRequest.ToDto(accountNumber));
             return result?.ToModel();
