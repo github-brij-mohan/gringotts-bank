@@ -9,7 +9,7 @@ namespace Gringotts.Models.Interfaces
 {
     public interface ICustomerRepository
     {
-        Task<bool> IsValidCustomerToCreate(Customer customer);
+        Task<bool> IsValidCustomerToCreateAsync(Customer customer);
         Task<Customer> CreateAsync(Customer customer);
         Task<Customer> GetByIdAsync(int customerId);
     }

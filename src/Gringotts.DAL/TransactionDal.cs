@@ -17,7 +17,7 @@ namespace Gringotts.DAL
             _bankDbContext = bankDbContext;
             _bankDbContext.Database.EnsureCreated();
         }
-        public async Task<Transaction> CreateTransactionAsync(Transaction transaction)
+        public async Task<Transaction> CreateAsync(Transaction transaction)
         {
             _bankDbContext.Transactions.Add(transaction);
 

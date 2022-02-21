@@ -40,7 +40,7 @@ namespace Gringotts.Tests
             };
 
             var mockCustomerRepository = new Mock<ICustomerRepository>();
-            mockCustomerRepository.Setup(x => x.IsValidCustomerToCreate(customer)).ReturnsAsync(true);
+            mockCustomerRepository.Setup(x => x.IsValidCustomerToCreateAsync(customer)).ReturnsAsync(true);
             mockCustomerRepository.Setup(x => x.CreateAsync(It.IsAny<Customer>())).ReturnsAsync(expectedResult);
 
             var manager = new CustomerManager(mockCustomerRepository.Object);
@@ -49,7 +49,7 @@ namespace Gringotts.Tests
 
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(expectedResult);
-            mockCustomerRepository.Verify(x => x.IsValidCustomerToCreate(It.IsAny<Customer>()), Times.Once);
+            mockCustomerRepository.Verify(x => x.IsValidCustomerToCreateAsync(It.IsAny<Customer>()), Times.Once);
             mockCustomerRepository.Verify(x => x.CreateAsync(It.IsAny<Customer>()), Times.Once);
         }
 
@@ -68,14 +68,14 @@ namespace Gringotts.Tests
             };
 
             var mockCustomerRepository = new Mock<ICustomerRepository>();
-            mockCustomerRepository.Setup(x => x.IsValidCustomerToCreate(customer)).ReturnsAsync(false);
+            mockCustomerRepository.Setup(x => x.IsValidCustomerToCreateAsync(customer)).ReturnsAsync(false);
 
             var manager = new CustomerManager(mockCustomerRepository.Object);
 
             Func<Task> result = async () => await manager.CreateAsync(customer);
 
             result.Should().ThrowExactlyAsync<Exception>().WithMessage("Invalid Customer Details.");
-            mockCustomerRepository.Verify(x => x.IsValidCustomerToCreate(It.IsAny<Customer>()), Times.Once);
+            mockCustomerRepository.Verify(x => x.IsValidCustomerToCreateAsync(It.IsAny<Customer>()), Times.Once);
             mockCustomerRepository.Verify(x => x.CreateAsync(It.IsAny<Customer>()), Times.Never);
         }
 

@@ -17,7 +17,7 @@ namespace Gringotts.Core
         }
         public async Task<Customer> CreateAsync(Customer customer)
         {
-            var isValidCustomerToCreate = await _customerRepository.IsValidCustomerToCreate(customer);
+            var isValidCustomerToCreate = await _customerRepository.IsValidCustomerToCreateAsync(customer);
             if (!isValidCustomerToCreate)
             {
                 throw new Exception("Invalid Customer Details.");

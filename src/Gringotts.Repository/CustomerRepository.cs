@@ -31,7 +31,7 @@ namespace Gringotts.Repository
             return customer?.ToModel();
         }
 
-        public async Task<bool> IsValidCustomerToCreate(Customer customer)
+        public async Task<bool> IsValidCustomerToCreateAsync(Customer customer)
         {
             var customerDto =  await _customerDto.GetByNameAndMobileAsync(customer.Name, customer.Mobile);
             if (customerDto != null)
