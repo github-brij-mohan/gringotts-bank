@@ -36,7 +36,9 @@ namespace Gringotts.Core
 
             ValidateAndUpdateAccountBalance(account, transactionRequest);
 
-            return await _transactionRepository.CreateTransactionAndUpdateAccountBalanceAsync(transactionRequest, accountNumber);
+            var transaction = await _transactionRepository.CreateTransactionAsync(transactionRequest, accountNumber);
+            _ = await _accountRepository.UpdateAccountBalanceAsync(customerId, accountNumber, transaction.Balance.Value);
+            return transaction;
         }
 
         private void ValidateAndUpdateAccountBalance(Account account, Transaction transaction)

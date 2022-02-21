@@ -36,5 +36,13 @@ namespace Gringotts.Repository
             var result = await _accountDal.GetByIdAsync(customerId, accountNumber);
             return result.ToModel();
         }
+
+        public async Task<Account> UpdateAccountBalanceAsync(int customerId, int accountNumber, double balance)
+        {
+            var account =  await _accountDal.GetByIdAsync(customerId, accountNumber);
+            account.Balance = balance;
+            account = await _accountDal.UpdateAsync(account);
+            return account.ToModel();
+        }
     }
 }

@@ -35,5 +35,13 @@ namespace Gringotts.DAL
             var result = _bankDbContext.Accounts.Where(x => x.CustomerId == customerId && x.AccountNumber == accountNumber)?.FirstOrDefault();
             return result;
         }
+
+        public async Task<Account> UpdateAsync(Account account)
+        {
+            _bankDbContext.Update(account);
+            await _bankDbContext.SaveChangesAsync();
+
+            return account;
+        }
     }
 }

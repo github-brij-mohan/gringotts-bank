@@ -12,5 +12,6 @@ namespace Gringotts.Models.Interfaces
         Task<Account> CreateAsync(int customerId, Account account);
         Task<Account> GetByIdAsync(int customerId, int accountNumber);
         Task<List<Account>> GetAllByCustomerIdAsync(int customerId);
+        Task<Account> UpdateAccountBalanceAsync(int customerId, int accountNumber, double balance);
     }
 }

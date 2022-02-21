@@ -9,7 +9,7 @@ namespace Gringotts.Models.Interfaces
 {
     public interface ITransactionRepository
     {
-        Task<Transaction> CreateTransactionAndUpdateAccountBalanceAsync(Transaction transactionRequest, int accountNumber);
+        Task<Transaction> CreateTransactionAsync(Transaction transactionRequest, int accountNumber);
         Task<Transaction> GetByIdAsync(int accountNumber, int transactionId);
         Task<List<Transaction>> GetAllAsync(int accountNumber, DateTime start, DateTime end);
     }

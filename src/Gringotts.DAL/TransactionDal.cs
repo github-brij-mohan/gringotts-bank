@@ -17,15 +17,9 @@ namespace Gringotts.DAL
             _bankDbContext = bankDbContext;
             _bankDbContext.Database.EnsureCreated();
         }
-        public async Task<Transaction> CreateTransactionAndUpdateAccountBalanceAsync(Transaction transaction, double balance)
+        public async Task<Transaction> CreateTransactionAsync(Transaction transaction)
         {
             _bankDbContext.Transactions.Add(transaction);
-
-            var account = _bankDbContext.Accounts.Find(transaction.AccountNumber);
-            account.Balance = balance;
-
-            _bankDbContext.Accounts.Update(account);
-            await _bankDbContext.SaveChangesAsync();
 
             return transaction;
         }

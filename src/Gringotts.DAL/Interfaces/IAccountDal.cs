@@ -12,5 +12,6 @@ namespace Gringotts.DAL.Interfaces
         Task<Account> CreateAsync(Account account);
         Task<Account> GetByIdAsync(int customerId, int accountNumber);
         Task<List<Account>> GetAllByCustomerIdAsync(int customerId);
+        Task<Account> UpdateAsync(Account account);
     }
 }
