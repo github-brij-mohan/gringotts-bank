@@ -36,7 +36,10 @@ namespace Gringotts.Core
 
             ValidateAndUpdateAccountBalance(account, transactionRequest);
 
+            //create transaction but will not save the db state
             var transaction = await _transactionRepository.CreateTransactionAsync(transactionRequest, accountNumber);
+
+            //update account balance and save db state
             _ = await _accountRepository.UpdateAccountBalanceAsync(customerId, accountNumber, transaction.Balance.Value);
             return transaction;
         }
