@@ -2,6 +2,9 @@
 using Model = Gringotts.Core.Models;
 using Dal = Gringotts.DAL.Entities;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Gringotts.Tests")]
 
 namespace Gringotts.Repository.Translators
 {

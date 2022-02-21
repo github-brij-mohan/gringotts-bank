@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Gringotts.Repository\Gringotts.Repository.csproj" />
     <ProjectReference Include="..\Gringotts.Services\Gringotts.Services.csproj" />
   </ItemGroup>
 
