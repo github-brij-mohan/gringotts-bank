@@ -31,6 +31,8 @@ Gringotts Bank is a bank that has an online branch for wizards to do some accoun
       - Repository - An abstraction layer above Dal which is responsible for gettig response from data base and data entities model translation.
     - Dal Layer
       - Dal - Expands as Data Access Layer which is responsible for data base communication.
+    - Test Layer
+      - Tests - Holds tests for all layers
   - An Api call flow in Gringotts Bank application:
   - ![image](https://user-images.githubusercontent.com/85063157/155066241-ff38063b-43da-403d-8ac6-9a41d27518e9.png)
 - Database Architecture:
